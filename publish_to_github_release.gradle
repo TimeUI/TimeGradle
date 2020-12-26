@@ -1,17 +1,3 @@
-println "usage:"
-print "
-    //project build.gradle
-    buildscript {
-        repositories {
-            maven { url "https://plugins.gradle.org/m2/" }
-        }
-        dependencies {
-            classpath "com.github.breadmoirai:github-release:2.2.12"
-        }
-    }
-    //library build.gradle
-    apply from: "https://github.com/TimeUI/TimeGradle/raw/main/publish_to_github_release.gradle"
-    "
 apply plugin: "com.github.breadmoirai.github-release"
 
 //classpath "com.github.breadmoirai:github-release:2.2.12"
@@ -48,5 +34,6 @@ githubRelease {
 }
 
 task autoGithubRelease(dependsOn: [":app:assembleRelease"]) {
+    group "publishing"
     finalizedBy tasks.getByName("githubRelease")
 }
